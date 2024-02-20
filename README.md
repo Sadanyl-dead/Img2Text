@@ -1,3 +1,3 @@
-# Image to text conertor app 
+# Image to text convertor app 
 
 ## Based on Tesseract
