@@ -3,7 +3,6 @@ from tkinter import filedialog, ttk, messagebox
 from PIL import Image, ImageOps
 import pytesseract
 import pyperclip
-import installer
 import subprocess
 import os
 
@@ -51,23 +50,8 @@ class ImageToTextConverter:
     def copy_to_clipboard(self):
         text = self.text_box.get('1.0', tk.END)
         pyperclip.copy(text)
-def checker(result):
-    if result.returncode == 0:
-        print("Tesseract OCR успешно установлен.")
-    else:
-        print("Произошла ошибка при установке Tesseract OCR.")
-    
-    path = 'C:/Program Files/Tesseract-OCR'
-    if os.path.exists(path):
-        messagebox.showinfo("Проверка пути", f"Путь {path} существует.")
-    else:
-        messagebox.showerror("Проверка пути", f"Путь {path} не существует.")
 
 def main():
-    result=installer.install_tesseract()
-    checker(result)
-    command='setx PATH "%PATH%;C:/Program Files/Tesseract-OCR"'
-    subprocess.run(command,shell=True)
     root = tk.Tk()
     app = ImageToTextConverter(root)
     root.mainloop()
@@ -76,3 +60,4 @@ if __name__ == '__main__':
     main()
 
 
+#setx /M PATH "%PATH:;C:/Program Files/Tesseract-OCR\bin=%" delete path tesseract
